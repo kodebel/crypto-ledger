@@ -8,7 +8,7 @@ export default function Home({ username }: { username: string }) {
     return (
         <Layout>
             <div className="text-center">
-                <h2>Welcome, {username}!</h2>
+                <h3>Welcome, {username}!</h3>
                 <TransactionTable />
             </div>
             <TransactionFormModal />
