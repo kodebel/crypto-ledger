@@ -3,7 +3,7 @@ import Logout from './Logout';
 
 export default function Layout({ children }: { children: ReactNode }) {
     return (
-        <div className=" d-flex flex-column bg-light">
+        <div className=" d-flex flex-column bg-light" style={{ height: '100%' }}>
             <header className="py-3 bg-dark text-white text-center position-relative">
                 <h1>Crypto Ledger</h1>
                 <div className="position-absolute end-0 top-0 m-3">
