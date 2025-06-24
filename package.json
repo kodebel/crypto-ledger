@@ -1,7 +1,6 @@
 {
   "name": "crypto-ledger",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/index.js",
   "scripts": {
     "start": "node server.js",
@@ -15,6 +14,9 @@
   },
   "devDependencies": {
     "typescript": "^5.5.3"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
-
