@@ -1,0 +1,20 @@
+{
+  "name": "crypto-ledger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "psql $DATABASE_URL -f migrations/001_init_tables.sql"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}
+
