@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {useRouter} from "next/router";
 
 const typeOptions = [
     { value: 'buy', label: 'Buy' },
@@ -8,11 +9,8 @@ const typeOptions = [
     { value: 'transfer_out', label: 'Transfer Out' },
 ];
 
-type Props = {
-    onSubmit: (data: any) => void;
-};
-
-export default function TransactionFormModal({ onSubmit }: Props) {
+export default function TransactionFormModal() {
+    const router = useRouter();
     const [show, setShow] = useState(false);
     const [form, setForm] = useState({
         datetime: '',
@@ -56,7 +54,7 @@ export default function TransactionFormModal({ onSubmit }: Props) {
                     total: '',
                     fee: '',
                 });
-                if (onSubmit) onSubmit(form); // Optionally trigger parent refresh
+                router.push('/'); // Redirect to home
             } catch (err: any) {
                 setErrors({ api: err.response?.data?.error || 'Failed to add transaction' });
             }
