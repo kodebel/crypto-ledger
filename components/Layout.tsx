@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </div>
             </header>
             <main className="flex-grow-1 d-flex justify-content-center align-items-center">
-                <div className="w-100" style={{ maxWidth: 800 }}>
+                <div className="w-100 mx-1" style={{ maxWidth: 800 }}>
                     {children}
                 </div>
             </main>
