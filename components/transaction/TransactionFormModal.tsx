@@ -66,7 +66,7 @@ export default function TransactionFormModal({ onSubmit }: Props) {
     return (
         <>
             <button
-                className="btn btn-success mb-3 position-fixed"
+                className="btn btn-dark mb-3 position-fixed"
                 style={{ bottom: '32px', right: '32px', zIndex: 1050 }}
                 onClick={() => setShow(true)}
                 title="Add Transaction"

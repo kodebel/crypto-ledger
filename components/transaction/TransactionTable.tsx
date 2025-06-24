@@ -84,33 +84,35 @@ export default function TransactionTable() {
                     />
                 </div>
                 <div className="col">
-                    <button className="btn btn-primary" type="submit">Filter</button>
+                    <button className="btn btn-outline-dark" type="submit">Filter</button>
                 </div>
             </form>
-            <table className="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>Timestamp (WIB)</th>
-                    <th>Type</th>
-                    <th>Asset</th>
-                    <th>Amount</th>
-                    <th>Total</th>
-                    <th>Fee</th>
-                </tr>
-                </thead>
-                <tbody>
-                {transactions.map(tx => (
-                    <tr key={tx.id}>
-                        <td>{formatWIB(tx.timestamp)}</td>
-                        <td>{tx.type}</td>
-                        <td>{tx.asset}</td>
-                        <td>{tx.amount}</td>
-                        <td>{tx.total}</td>
-                        <td>{tx.fee}</td>
+            <div style={{ overflowX: 'auto' }}>
+                <table className="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Timestamp (WIB)</th>
+                        <th>Type</th>
+                        <th>Asset</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                        <th>Fee</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {transactions.map(tx => (
+                        <tr key={tx.id}>
+                            <td>{formatWIB(tx.timestamp)}</td>
+                            <td>{tx.type}</td>
+                            <td>{tx.asset}</td>
+                            <td>{tx.amount}</td>
+                            <td>{tx.total}</td>
+                            <td>{tx.fee}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
             <nav>
                 <ul className="pagination justify-content-end">
                     <li className={`page-item${page === 1 ? ' disabled' : ''}`}>
