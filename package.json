@@ -11,6 +11,7 @@
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "bootstrap": "^5.3.7",
+    "bootstrap-icons": "^1.13.1",
     "chart.js": "^4.5.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",

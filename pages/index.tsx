@@ -1,16 +1,17 @@
 import { GetServerSideProps } from 'next';
 import jwt from 'jsonwebtoken';
 import Layout from '../components/Layout';
-import Logout from '../components/Logout';
+import TransactionTable from "../components/transaction/TransactionTable";
+import TransactionFormModal from "../components/transaction/TransactionFormModal";
 
 export default function Home({ username }: { username: string }) {
     return (
         <Layout>
             <div className="text-center">
                 <h2>Welcome, {username}!</h2>
-                <p>This is a protected home page.</p>
-                <Logout />
+                <TransactionTable />
             </div>
+            <TransactionFormModal />
         </Layout>
     );
 }
@@ -32,4 +33,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 };
-

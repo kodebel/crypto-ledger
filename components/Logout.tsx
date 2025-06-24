@@ -10,8 +10,12 @@ export default function Logout() {
     };
 
     return (
-        <button className="btn btn-outline-danger mt-3" onClick={handleLogout}>
-            Logout
+        <button
+            className="btn btn-outline-danger float-end"
+            onClick={handleLogout}
+            title="Logout"
+        >
+            <i className="bi bi-box-arrow-right"></i>
         </button>
     );
 }
