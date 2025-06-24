@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/api/v1",
-      "dest": "/api/engine"
+      "src": "/transactions",
+      "dest": "/api/transactions"
+    },
+    {
+      "src": "/portfolio",
+      "dest": "/api/portfolio"
     }
   ]
 }
