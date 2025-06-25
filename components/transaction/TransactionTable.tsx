@@ -98,23 +98,23 @@ export default function TransactionTable() {
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Created At (WIB)</th>
-                        <th>Type</th>
                         <th>Asset</th>
                         <th>Amount</th>
                         <th>Fee</th>
                         <th>Total</th>
+                        <th>Type</th>
+                        <th>Created At (WIB)</th>
                     </tr>
                     </thead>
                     <tbody>
                     {transactions.map(tx => (
                         <tr key={tx.id}>
-                            <td>{formatWIB(tx.timestamp)}</td>
-                            <td>{typeOptions.find(opt => opt.value === tx.type)?.label || tx.type}</td>
                             <td>{tx.asset}</td>
                             <td>{Number(tx.amount).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
                             <td>{Number(tx.fee).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
                             <td>{Number(tx.total).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
+                            <td>{typeOptions.find(opt => opt.value === tx.type)?.label || tx.type}</td>
+                            <td>{formatWIB(tx.timestamp)}</td>
                         </tr>
                     ))}
                     </tbody>
