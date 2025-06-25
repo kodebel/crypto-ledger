@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {useRouter} from "next/router";
+import { NumericFormat } from 'react-number-format';
+
 
 const typeOptions = [
     { value: 'buy', label: 'Buy' },
@@ -115,47 +117,65 @@ export default function TransactionFormModal() {
                                 </div>
                                 <div className="mb-2">
                                     <label className="form-label">Amount</label>
-                                    <input
-                                        type="number"
+                                    <NumericFormat
                                         className={`form-control${errors.amount ? ' is-invalid' : ''}`}
                                         name="amount"
                                         value={form.amount}
-                                        onChange={handleChange}
+                                        onValueChange={values => setForm({ ...form, amount: values.value })}
+                                        thousandSeparator
+                                        prefix="Rp "
+                                        allowNegative={false}
+                                        placeholder="Amount"
+                                        isAllowed={values => Number(values.value) >= 0}
                                     />
                                     {errors.amount && <div className="invalid-feedback">{errors.amount}</div>}
                                 </div>
                                 <div className="mb-2">
                                     <label className="form-label">Price per Unit</label>
-                                    <input
-                                        type="number"
+                                    <NumericFormat
                                         className={`form-control${errors.price_per_unit ? ' is-invalid' : ''}`}
                                         name="price_per_unit"
                                         value={form.price_per_unit}
-                                        onChange={handleChange}
+                                        onValueChange={values => setForm({ ...form, price_per_unit: values.value })}
+                                        thousandSeparator
+                                        allowNegative={false}
+                                        prefix="Rp "
+                                        placeholder="Price per Unit"
+                                        isAllowed={values => Number(values.value) >= 0}
                                     />
                                     {errors.price_per_unit && <div className="invalid-feedback">{errors.price_per_unit}</div>}
                                 </div>
                                 <div className="mb-2">
-                                    <label className="form-label">Total</label>
-                                    <input
-                                        type="number"
-                                        className={`form-control${errors.total ? ' is-invalid' : ''}`}
-                                        name="total"
-                                        value={form.total}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.total && <div className="invalid-feedback">{errors.total}</div>}
-                                </div>
-                                <div className="mb-2">
                                     <label className="form-label">Fee</label>
-                                    <input
-                                        type="number"
+                                    <NumericFormat
                                         className={`form-control${errors.fee ? ' is-invalid' : ''}`}
                                         name="fee"
                                         value={form.fee}
-                                        onChange={handleChange}
+                                        onValueChange={values => setForm({ ...form, fee: values.value })}
+                                        thousandSeparator
+                                        allowNegative={false}
+                                        prefix="Rp "
+                                        placeholder="Fee"
+                                        isAllowed={values => Number(values.value) >= 0}
                                     />
                                     {errors.fee && <div className="invalid-feedback">{errors.fee}</div>}
+                                </div>
+
+                                <div className="mb-2">
+                                    <label className="form-label">Total</label>
+                                    <NumericFormat
+                                        className={`form-control${errors.total ? ' is-invalid' : ''}`}
+                                        name="total"
+                                        value={String(Number(form.amount || 0) + Number(form.fee || 0))}
+                                        readOnly
+                                        onValueChange={values => setForm({ ...form, total: values.value })}
+                                        thousandSeparator
+                                        allowNegative={false}
+                                        prefix="Rp "
+                                        placeholder="Total"
+                                        isAllowed={values => Number(values.value) >= 0}
+                                    />
+                                    {errors.total && <div className="invalid-feedback">{errors.total}</div>}
                                 </div>
                             </div>
                             <div className="modal-footer">
