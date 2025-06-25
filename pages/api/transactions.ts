@@ -30,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return res.status(404).json({ error: 'User not found' });
             }
             const user_id = userResult.rows[0].id;
+            req.body.asset = req.body.asset.toUpperCase(); // Ensure asset is uppercase
 
             const { datetime, type, asset, amount, price_per_unit, total, fee } = req.body;
 
