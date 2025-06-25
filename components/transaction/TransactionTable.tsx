@@ -55,8 +55,7 @@ export default function TransactionTable() {
             day: '2-digit',
             hour: '2-digit',
             minute: '2-digit',
-            hour12: false,
-            timeZone: 'Asia/Jakarta',
+            hour12: false
         }).replace(',', '');
     };
 
@@ -103,7 +102,7 @@ export default function TransactionTable() {
                         <th>Fee</th>
                         <th>Total</th>
                         <th>Type</th>
-                        <th>Created At (WIB)</th>
+                        <th>Created At</th>
                     </tr>
                     </thead>
                     <tbody>
