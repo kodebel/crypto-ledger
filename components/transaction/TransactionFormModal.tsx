@@ -120,21 +120,6 @@ export default function TransactionFormModal() {
                                     />
                                 </div>
                                 <div className="mb-2">
-                                    <label className="form-label">Amount</label>
-                                    <NumericFormat
-                                        className={`form-control${errors.amount ? ' is-invalid' : ''}`}
-                                        name="amount"
-                                        value={form.amount}
-                                        onValueChange={values => setForm({ ...form, amount: values.value })}
-                                        thousandSeparator
-                                        prefix="Rp "
-                                        allowNegative={false}
-                                        placeholder="Amount"
-                                        isAllowed={values => Number(values.value) >= 0}
-                                    />
-                                    {errors.amount && <div className="invalid-feedback">{errors.amount}</div>}
-                                </div>
-                                <div className="mb-2">
                                     <label className="form-label">Price per Unit</label>
                                     <NumericFormat
                                         className={`form-control${errors.price_per_unit ? ' is-invalid' : ''}`}
@@ -148,6 +133,21 @@ export default function TransactionFormModal() {
                                         isAllowed={values => Number(values.value) >= 0}
                                     />
                                     {errors.price_per_unit && <div className="invalid-feedback">{errors.price_per_unit}</div>}
+                                </div>
+                                <div className="mb-2">
+                                    <label className="form-label">Amount</label>
+                                    <NumericFormat
+                                        className={`form-control${errors.amount ? ' is-invalid' : ''}`}
+                                        name="amount"
+                                        value={form.amount}
+                                        onValueChange={values => setForm({ ...form, amount: values.value })}
+                                        thousandSeparator
+                                        prefix="Rp "
+                                        allowNegative={false}
+                                        placeholder="Amount"
+                                        isAllowed={values => Number(values.value) >= 0}
+                                    />
+                                    {errors.amount && <div className="invalid-feedback">{errors.amount}</div>}
                                 </div>
                                 <div className="mb-2">
                                     <label className="form-label">Fee</label>
