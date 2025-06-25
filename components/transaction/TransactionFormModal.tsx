@@ -13,6 +13,7 @@ const typeOptions = [
 
 export default function TransactionFormModal() {
     const router = useRouter();
+    const [formSubmitting, setFormSubmitting] = useState(false);
     const [show, setShow] = useState(false);
     const [form, setForm] = useState({
         datetime: '',
@@ -45,6 +46,7 @@ export default function TransactionFormModal() {
         setErrors(newErrors);
         if (Object.keys(newErrors).length === 0) {
             try {
+                setFormSubmitting(true);
                 await axios.post('/api/transactions', form);
                 setShow(false);
                 setForm({
@@ -56,9 +58,11 @@ export default function TransactionFormModal() {
                     total: '',
                     fee: '',
                 });
+                setFormSubmitting(false);
                 router.push('/'); // Redirect to home
             } catch (err: any) {
                 setErrors({ api: err.response?.data?.error || 'Failed to add transaction' });
+                setFormSubmitting(false);
             }
         }
     };
@@ -182,7 +186,11 @@ export default function TransactionFormModal() {
                                 <button type="button" className="btn btn-secondary" onClick={() => setShow(false)}>
                                     Cancel
                                 </button>
-                                <button type="submit" className="btn btn-primary">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                    disabled={Object.keys(errors).length > 0 || formSubmitting}
+                                >
                                     Add
                                 </button>
                             </div>
