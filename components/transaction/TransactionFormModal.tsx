@@ -115,7 +115,7 @@ export default function TransactionFormModal() {
                                         type="text"
                                         className="form-control"
                                         name="asset"
-                                        value={form.asset}
+                                        value={form.asset.toUpperCase()}
                                         onChange={handleChange}
                                     />
                                 </div>

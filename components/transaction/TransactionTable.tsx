@@ -62,6 +62,13 @@ export default function TransactionTable() {
 
     const totalPages = Math.ceil(total / limit);
 
+    const typeOptions = [
+        { value: 'buy', label: 'Buy' },
+        { value: 'sell', label: 'Sell' },
+        { value: 'transfer_in', label: 'Transfer In' },
+        { value: 'transfer_out', label: 'Transfer Out' },
+    ];
+
     return (
         <div>
             <form className="row g-2 mb-3" onSubmit={handleFilter}>
@@ -91,23 +98,23 @@ export default function TransactionTable() {
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Timestamp (WIB)</th>
+                        <th>Created At (WIB)</th>
                         <th>Type</th>
                         <th>Asset</th>
                         <th>Amount</th>
-                        <th>Total</th>
                         <th>Fee</th>
+                        <th>Total</th>
                     </tr>
                     </thead>
                     <tbody>
                     {transactions.map(tx => (
                         <tr key={tx.id}>
                             <td>{formatWIB(tx.timestamp)}</td>
-                            <td>{tx.type}</td>
+                            <td>{typeOptions.find(opt => opt.value === tx.type)?.label || tx.type}</td>
                             <td>{tx.asset}</td>
-                            <td>{tx.amount}</td>
-                            <td>{tx.total}</td>
-                            <td>{tx.fee}</td>
+                            <td>{Number(tx.amount).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
+                            <td>{Number(tx.fee).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
+                            <td>{Number(tx.total).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
                         </tr>
                     ))}
                     </tbody>
