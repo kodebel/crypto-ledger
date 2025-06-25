@@ -102,7 +102,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             // Get paginated data
             const dataResult = await pool.query(
-                `SELECT * FROM transactions ${where} ORDER BY id DESC LIMIT $${paramIdx} OFFSET $${paramIdx + 1}`,
+                `SELECT * FROM transactions ${where} ORDER BY timestamp DESC LIMIT $${paramIdx} OFFSET $${paramIdx + 1}`,
                 [...params, limit, offset]
             );
 

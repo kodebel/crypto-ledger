@@ -59,7 +59,7 @@ export default function TransactionFormModal() {
                     fee: '',
                 });
                 setFormSubmitting(false);
-                router.push('/'); // Redirect to home
+                await router.push('/'); // Redirect to home
             } catch (err: any) {
                 setErrors({ api: err.response?.data?.error || 'Failed to add transaction' });
                 setFormSubmitting(false);
