@@ -32,7 +32,7 @@ export default function TransactionFormModal() {
     const validate = () => {
         const newErrors: { [key: string]: string } = {};
         ['amount', 'price_per_unit', 'total', 'fee'].forEach(field => {
-            if (!form[field] || Number(form[field]) <= 0) {
+            if (!form[field] || Number(form[field]) < 0) {
                 newErrors[field] = 'Must be greater than 0';
             }
         });
