@@ -11,7 +11,11 @@ type Transaction = {
     fee: string;
 };
 
-export default function TransactionTable() {
+type Props = {
+    onFilterChange?: (filter: { start: string; end: string }) => void;
+};
+
+export default function TransactionTable({ onFilterChange }: Props) {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
@@ -45,6 +49,7 @@ export default function TransactionTable() {
         e.preventDefault();
         setPage(1);
         fetchTransactions(1);
+        if (onFilterChange) onFilterChange({ start, end });
     };
 
     const formatWIB = (iso: string) => {
@@ -70,6 +75,7 @@ export default function TransactionTable() {
 
     return (
         <div>
+
             <form className="row g-2 mb-3" onSubmit={handleFilter}>
                 <div className="col">
                     <input
@@ -97,22 +103,22 @@ export default function TransactionTable() {
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Asset</th>
+                        <th>Type</th>
                         <th>Amount</th>
                         <th>Fee</th>
                         <th>Total</th>
-                        <th>Type</th>
+                        <th>Asset</th>
                         <th>Created At</th>
                     </tr>
                     </thead>
                     <tbody>
                     {transactions.map(tx => (
                         <tr key={tx.id}>
-                            <td>{tx.asset}</td>
+                            <td>{typeOptions.find(opt => opt.value === tx.type)?.label || tx.type}</td>
                             <td>{Number(tx.amount).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
                             <td>{Number(tx.fee).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
                             <td>{Number(tx.total).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
-                            <td>{typeOptions.find(opt => opt.value === tx.type)?.label || tx.type}</td>
+                            <td>{tx.asset}</td>
                             <td>{formatWIB(tx.timestamp)}</td>
                         </tr>
                     ))}

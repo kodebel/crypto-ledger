@@ -1,16 +1,24 @@
 import { GetServerSideProps } from 'next';
+import React, { useState } from 'react';
 import jwt from 'jsonwebtoken';
 import Layout from '../components/Layout';
 import TransactionTable from "../components/transaction/TransactionTable";
 import TransactionFormModal from "../components/transaction/TransactionFormModal";
+import WithdrawalsCard from "../components/WithdrawalsCard";
+import SummaryCards from "../components/SummaryCards";
 
 export default function Home({ username }: { username: string }) {
+
+    const [filter, setFilter] = useState<{ start: string; end: string }>({ start: '', end: '' });
+
     return (
         <Layout>
-            <div className="text-center">
-                <h3>Welcome, {username}!</h3>
-                <TransactionTable />
+            <div className="text-center mb-4">
+                <h6>Woyyy, {username}!</h6>
             </div>
+            <SummaryCards />
+            <TransactionTable />
+            <WithdrawalsCard start={filter.start} end={filter.end} />
             <TransactionFormModal />
         </Layout>
     );
