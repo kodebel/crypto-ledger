@@ -35,7 +35,7 @@ export default function WithdrawalsCard({ start, end }: Props) {
 
     return (
         <div className="card bg-dark text-white mb-3">
-            <div className="card-body text-end">
+            <div className="card-body text-start">
                 <h6 className="card-title">Total Withdrawal</h6>
                 <h4 className="card-text">
                     {Number(withdrawal).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
