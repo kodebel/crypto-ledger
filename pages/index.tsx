@@ -13,7 +13,7 @@ export default function Home({ username }: { username: string }) {
 
     return (
         <Layout>
-            <div className="text-center mb-4">
+            <div className="text-center m-4">
                 <h6>Woyyy, {username}!</h6>
             </div>
             <SummaryCards />
