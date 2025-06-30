@@ -37,7 +37,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 (COALESCE(SUM(CASE WHEN type = 'transfer_out' THEN total ELSE 0 END),0) +
                  COALESCE(SUM(CASE WHEN type = 'buy' THEN total ELSE 0 END),0)) AS wallet,
                 COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) AS deposit,
-                (COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) -
+                (COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) + 
+                COALESCE(SUM(CASE WHEN type = 'sell' THEN amount ELSE 0 END),0) -
                  (COALESCE(SUM(CASE WHEN type = 'transfer_out' THEN total ELSE 0 END),0) +
                   COALESCE(SUM(CASE WHEN type = 'buy' THEN total ELSE 0 END),0)) -
                  COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0)) AS balance,
