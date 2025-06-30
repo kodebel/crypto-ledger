@@ -32,15 +32,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Run the summary query for this user
         const summaryResult = await pool.query(
             `SELECT 
-                COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) -
+                COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) + 
+                COALESCE(SUM(CASE WHEN type = 'sell' THEN amount ELSE 0 END),0) -
                 (COALESCE(SUM(CASE WHEN type = 'transfer_out' THEN total ELSE 0 END),0) +
-                 COALESCE(SUM(CASE WHEN type = 'buy' THEN fee ELSE 0 END),0) +
-                 COALESCE(SUM(CASE WHEN type = 'sell' THEN fee ELSE 0 END),0)) AS wallet,
+                 COALESCE(SUM(CASE WHEN type = 'buy' THEN fee ELSE 0 END),0)) AS wallet,
                 COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) AS deposit,
                 (COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0) -
                  (COALESCE(SUM(CASE WHEN type = 'transfer_out' THEN total ELSE 0 END),0) +
-                  COALESCE(SUM(CASE WHEN type = 'buy' THEN fee ELSE 0 END),0) +
-                  COALESCE(SUM(CASE WHEN type = 'sell' THEN fee ELSE 0 END),0)) -
+                  COALESCE(SUM(CASE WHEN type = 'buy' THEN fee ELSE 0 END),0)) -
                  COALESCE(SUM(CASE WHEN type = 'transfer_in' THEN amount ELSE 0 END),0)) AS balance,
                 COALESCE(SUM(CASE WHEN type = 'transfer_out' THEN amount ELSE 0 END),0) AS withdrawl
             FROM transactions
